@@ -1,0 +1,12 @@
+*dud*
+query.csv
+__pycache__/
+*.py[cod]
+.mypy_cache/
+*.egg-info/
+build/
+venv/
+.venv/
+.coverage
+.tox/
+htmlcov/
