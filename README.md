@@ -22,7 +22,7 @@ If new to virtual environments, feel free to [read my article on the subject](ht
 
 ## Usage
 
-Obtain a CSV file with the following structure (the header line is critical):
+Obtain a (UTF-8 encoded) CSV file with the following structure (the header line is critical):
 
 | Name  | SKU | URL                                              |
 | ----- | --- | ------------------------------------------------ |
