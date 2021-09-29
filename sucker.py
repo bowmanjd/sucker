@@ -72,7 +72,7 @@ def copy_url(task_id: TaskID, name: str, sku: str, url: str) -> None:
         progress.start_task(task_id)
         for data in iter(partial(response.read, 32768), b""):
             dest_file.write(data)
-            progress.update(task_id, advance=len(data))
+            progress.update(task_id, advance=len(data), visible=True)
             if done_event.is_set():
                 return
     progress.console.log(f"Downloaded {file_path}")
@@ -94,7 +94,7 @@ def download(csv_file: str) -> None:
                 reader = csv.DictReader(in_file)
                 for row in reader:
                     task_id = progress.add_task(
-                        "download", filename=row["Name"], start=False
+                        "download", filename=row["Name"], start=False, visible=False
                     )
                     pool.submit(copy_url, task_id, row["Name"], row["SKU"], row["URL"])
 
