@@ -30,6 +30,7 @@ progress = Progress(
     TransferSpeedColumn(),
     "•",
     TimeRemainingColumn(),
+    auto_refresh=False,
 )
 
 
@@ -72,7 +73,7 @@ def copy_url(task_id: TaskID, name: str, sku: str, url: str) -> None:
         progress.start_task(task_id)
         for data in iter(partial(response.read, 32768), b""):
             dest_file.write(data)
-            progress.update(task_id, advance=len(data), visible=True)
+            progress.update(task_id, advance=len(data), visible=True, refresh=True)
             if done_event.is_set():
                 return
     progress.console.log(f"Downloaded {file_path}")
