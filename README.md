@@ -4,7 +4,7 @@ Bulk URL downloader
 
 ## Dependencies
 
-This script requires Python 3 and the Rich library (for progress bars).
+This script requires Python 3.
 
 ## Installation
 
