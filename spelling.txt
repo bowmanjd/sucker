@@ -1,3 +1,4 @@
+Posix
 Python
 Runtime
 TMP
@@ -43,4 +44,6 @@ unlink
 unredirected
 urlsafe
 wfile
+writeheader
 writelines
+writerow
