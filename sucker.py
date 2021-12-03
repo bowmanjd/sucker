@@ -56,11 +56,12 @@ def copy_url(file_stem: str, url: str, extension: typing.Optional[str]) -> None:
     print(f"Downloaded {file_path}")
 
 
-def download(csv_file: str) -> None:
+def download(csv_file: str, download_files: bool = True) -> None:
     """Download multuple files to the given directory.
 
     Args:
         csv_file: name of CSV file to parse
+        download_files: set to True to download files
     """
     pathlib.Path(OUT_DIR).mkdir(exist_ok=True)  # ensure the "out" directory exists
 
@@ -85,17 +86,18 @@ def download(csv_file: str) -> None:
 
                 new_row = {
                     "Id": row["Id"],
-                    "Image_URL__c": f"{file_stem}{extension}",
+                    "Image_URL__c": f"https://d23sy43gbewnpt.cloudfront.net/public/images/content/{file_stem}{extension}",
                 }
                 writer.writerow(new_row)
 
-                pool.submit(copy_url, file_stem, row["Image_URL__c"], extension)
+                if download_files:
+                    pool.submit(copy_url, file_stem, row["Image_URL__c"], extension)
 
 
 def run() -> None:
     """Command runner."""
     if sys.argv[1:]:
-        download(sys.argv[1])
+        download(sys.argv[1], False)
     else:
         print("Usage:\n\tpython3 sucker.py CSV_FILE")
 
